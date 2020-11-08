@@ -186,9 +186,15 @@ export default {
   computed: {
     ...mapGetters('photo', ['getPhotos']),
     ...mapGetters('role', ['getRoles']),
-    ...mapGetters('membre', ['getMembre'])
+    ...mapGetters('membre', ['getMembre']),
+    ...mapGetters('user', ['getLogin'])
+
   },
   mounted: function () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     var membre = null
     var list = this.getPhotos()
     this.dataImages = list.map((Element) => {

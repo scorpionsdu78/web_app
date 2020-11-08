@@ -80,6 +80,7 @@ export default {
   computed: {
     ...mapGetters('spectacle', ['getSpectacles']),
     ...mapGetters('reservation', ['getResa']),
+    ...mapGetters('user', ['getLogin']),
 
     places () {
       if (this.value !== undefined) {
@@ -90,6 +91,10 @@ export default {
     }
   },
   mounted: function () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     this.items = this.getSpectacles()
     var reservation = null
     if (this.$router.app._route.params.id !== undefined) {
@@ -120,6 +125,15 @@ export default {
         })
     },
     update: function () {
+      const _this = this
+      var resa = { nom_reservation: this.name, nb_place: this.numberValue, spectacle: this.value }
+      this.updateReservation({ id: this.id, reservation: resa })
+        .then(function (response) {
+          _this.$router.push({ name: 'Reservations' })
+        })
+        .catch(function (error) {
+          console.error(error)
+        })
     }
   }
 }

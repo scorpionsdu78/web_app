@@ -170,10 +170,14 @@ export default {
   }),
   computed: {
     ...mapGetters('article', ['getArticle']),
-    ...mapGetters('photo', ['getPhotos'])
-
+    ...mapGetters('photo', ['getPhotos']),
+    ...mapGetters('user', ['getLogin'])
   },
   mounted: function () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     console.log(this.$router.app._route.params.id)
     var article = null
     var list = this.getPhotos()

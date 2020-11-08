@@ -78,10 +78,15 @@ export default {
   }),
   computed: {
     ...mapGetters('membre', ['getMembres']),
+    ...mapGetters('user', ['getLogin']),
     ...mapGetters('piece', ['getPiece'])
 
   },
   async mounted () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     await this.fetchMembre()
     this.items = this.getMembres()
     var piece = null
@@ -104,6 +109,7 @@ export default {
     ...mapActions('piece', ['modifyPiece']),
     ...mapActions('membre', ['fetchMembre']),
     submit: function () {
+      var _this = this
       console.log(this.value)
       console.log(this.titre + this.auteur + this.active)
       this.ajoutPiece({
@@ -111,16 +117,21 @@ export default {
         auteur: this.auteur,
         active: this.active,
         membres: this.value
+      }).then(function (response) {
+        _this.$router.push({ name: 'Pieces' })
       })
     },
     update: function () {
+      var _this = this
       const modif = {
         nom: this.titre,
         auteur: this.auteur,
         active: this.active,
         membres: this.value
       }
-      this.modifyPiece({ id: this.id, piece: modif })
+      this.modifyPiece({ id: this.id, piece: modif }).then(function (response) {
+        _this.$router.push({ name: 'Pieces' })
+      })
     }
   }
 }

@@ -22,7 +22,6 @@ const actions = {
       .then(function (response) {
         console.log(response.data)
         context.commit('setMembre', response.data)
-        return response
       })
       .catch(function (error) {
         console.log(error)

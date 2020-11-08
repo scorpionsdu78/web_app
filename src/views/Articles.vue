@@ -9,7 +9,7 @@
                 bottom
                 right
                 fab
-                router to="/article/0"
+                router to="article/0"
         >
             <v-icon>mdi-plus</v-icon>
         </v-btn>
@@ -27,7 +27,7 @@
                             </v-col>
                             <v-col md=3></v-col>
                             <v-col md=1>
-                                <v-btn  color="warning" link router :to ="'/article/' + article.idarticle" >
+                                <v-btn  color="warning" link router :to ="'article/' + article.idarticle" >
                                     <v-icon>mdi-pen</v-icon>
                                 </v-btn>
                             </v-col>
@@ -49,12 +49,17 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapGetters('article', ['getArticles']),
+    ...mapGetters('user', ['getLogin']),
 
     articles () {
       return this.getArticles()
     }
   },
   async mounted () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     await this.fetchsArticles()
     await this.fetchsPhotos()
   },

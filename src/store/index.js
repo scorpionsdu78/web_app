@@ -8,6 +8,8 @@ import SpectacleStore from './modules/spectacle'
 import PhotosStore from './modules/photos'
 import RoleStore from './modules/roles'
 import ReservationStore from './modules/reservations'
+import MessageStore from './modules/message'
+import UserStore from './modules/user'
 
 Vue.use(Vuex)
 
@@ -23,6 +25,8 @@ export default new Vuex.Store({
     spectacle: SpectacleStore,
     photo: PhotosStore,
     role: RoleStore,
-    reservation: ReservationStore
+    reservation: ReservationStore,
+    message: MessageStore,
+    user: UserStore
   }
 })

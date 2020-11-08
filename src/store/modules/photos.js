@@ -14,7 +14,7 @@ const mutations = {
 
 const actions = {
   fetchsPhotos: async function (context) {
-    axios.get(url)
+    return axios.get(url)
       .then(function (response) {
         console.log(response)
         context.commit('setPhotos', response.data)
@@ -28,6 +28,14 @@ const actions = {
 const getters = {
   getPhotos: state => function () {
     return state.photos
+  },
+  getPhotosTransform: state => function () {
+    console.log('entrez get')
+    console.log(state.photos)
+    var dataImages = state.photos.map((Element) => {
+      return { idphoto: Element.idphoto, src: 'http://localhost:8080/api/Image/' + Element.url, alt: Element.url }
+    })
+    return dataImages
   }
 }
 

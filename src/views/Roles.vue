@@ -57,12 +57,17 @@ export default {
   }),
   computed: {
     ...mapGetters('role', ['getRoles']),
+    ...mapGetters('user', ['getLogin']),
 
     roles () {
       return this.getRoles()
     }
   },
   async mounted () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     await this.fetchsRoles()
   },
   methods: {

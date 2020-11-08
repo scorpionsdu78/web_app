@@ -9,7 +9,7 @@
                 bottom
                 right
                 fab
-                router to = '/spectacle/0'
+                router to = 'spectacle/0'
         >
             <v-icon>mdi-plus</v-icon>
         </v-btn>
@@ -27,7 +27,7 @@
                             </v-col>
                             <v-col md=3></v-col>
                             <v-col md=1>
-                                <v-btn  color="warning" link router :to ="'/spectacle/' + spectacle.idspectacle" >
+                                <v-btn  color="warning" link router :to ="'spectacle/' + spectacle.idspectacle" >
                                     <v-icon>mdi-pen</v-icon>
                                 </v-btn>
                             </v-col>
@@ -49,12 +49,17 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapGetters('spectacle', ['getSpectacles']),
+    ...mapGetters('user', ['getLogin']),
 
     spectacles () {
       return this.getSpectacles()
     }
   },
   async mounted () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     await this.fetchSpectacle()
     await this.fetchPiece()
   },

@@ -119,9 +119,14 @@ export default {
   }),
   computed: {
     ...mapGetters('piece', ['getPieces']),
+    ...mapGetters('user', ['getLogin']),
     ...mapGetters('spectacle', ['getSpectacle'])
   },
   mounted: function () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     this.items = this.getPieces()
     var spectacle = null
     if (this.$router.app._route.params.id !== undefined) {
@@ -143,6 +148,7 @@ export default {
     ...mapActions('spectacle', ['ajoutSpectacle']),
     ...mapActions('spectacle', ['modifSpectacle']),
     submit: function () {
+      var _this = this
       console.log(this.date)
       const place = parseInt(this.placeRest)
       const number = parseInt(this.numberValue)
@@ -153,9 +159,15 @@ export default {
         place_restante: place,
         prix: this.prix,
         repertoire: this.value
+      }).then(function (response) {
+        _this.$router.push({ name: 'Spectacles' })
       })
+        .catch(function (error) {
+          console.error(error)
+        })
     },
     update: function () {
+      var _this = this
       console.log(this.date)
       const place = parseInt(this.placeRest)
       const number = parseInt(this.numberValue)
@@ -167,7 +179,12 @@ export default {
         prix: this.prix,
         repertoire: this.value
       }
-      this.modifSpectacle({ id: this.id, spectacle: modif })
+      this.modifSpectacle({ id: this.id, spectacle: modif }).then(function (response) {
+        _this.$router.push({ name: 'Spectacles' })
+      })
+        .catch(function (error) {
+          console.error(error)
+        })
     }
   }
 }

@@ -35,7 +35,8 @@ const actions = {
     return axios.post(url, reservation)
   },
   updateReservation: async function (context, { id, reservation }) {
-
+    var urltmp = url + '/' + id
+    return axios.put(urltmp, reservation)
   }
 }
 

@@ -20,7 +20,7 @@ const mutations = {
 
 const actions = {
   fetchSpectacle: async function (context) {
-    axios.get(url)
+    return axios.get(url)
       .then((response) => {
         console.log(response)
         context.commit('setSpectacles', response.data)
@@ -75,6 +75,24 @@ const getters = {
   },
   getSpectacle: state => function (id) {
     var result = state.spectacles.find(element => element.idspectacle === id)
+    return result
+  },
+  getDates: state => function () {
+    var result = state.spectacles.map(element => {
+      var tmp = {
+        name: element.nom,
+        start: Date.parse(element.dates),
+        end: Date.parse(element.dates),
+        details: element.repertoire.nom + ' - ' + element.repertoire.auteur + ' - ' + element.prix
+      }
+      console.log(tmp)
+      return tmp
+    })
+    return result
+  },
+  getFutur: state => function () {
+    var today = new Date()
+    var result = state.spectacles.filter(element => { return today <= Date.parse(element.dates) })
     return result
   }
 }

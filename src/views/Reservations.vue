@@ -27,7 +27,7 @@
                             </v-col>
                             <v-col md=3></v-col>
                             <v-col md=1>
-                                <v-btn  color="warning" link router :to ="'/reservation/' + reservation.idresa" >
+                                <v-btn  color="warning" link router :to ="'reservation/' + reservation.idresa" >
                                     <v-icon>mdi-pen</v-icon>
                                 </v-btn>
                             </v-col>
@@ -48,6 +48,7 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
+    ...mapGetters('user', ['getLogin']),
     ...mapGetters('reservation', ['getReservations']),
 
     reservations () {
@@ -55,6 +56,10 @@ export default {
     }
   },
   async mounted () {
+    var logged = this.getLogin()
+    if (logged === false) {
+      this.$router.push({ name: 'Login' })
+    }
     await this.fetchsReservation()
     await this.fetchSpectacle()
   },
