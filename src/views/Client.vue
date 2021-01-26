@@ -14,7 +14,7 @@
                     <v-row>
                         <v-col md="3">
                             <v-card color="transparent" flat router :to="{name: 'default'}">
-                                <img src="http://localhost:8080/api/Image/logo.png"/>
+                                <img src="http://localhost:8080/compagnieServer/api/Image/logo.png"/>
                             </v-card>
                         </v-col>
                         <v-col md="2">

@@ -58,7 +58,7 @@ export default {
   data: () => ({
     dataImages: [{
       id: '1',
-      src: 'http://localhost:8080/api/Image/',
+      src: 'http://localhost:8080/compagnieServer/api/Image/',
       alt: 'Alt Image 1'
     }]
   }),
