@@ -66,7 +66,7 @@ export default {
       this.titre = article.titre
       this.content = article.content
       if (article.photos.length > 0) {
-        this.photos = article.photos.map((Element) => { return { idphoto: Element.idphoto, src: 'http://localhost:8080/api/Image/' + Element.url, alt: Element.url } })
+        this.photos = article.photos.map((Element) => { return { idphoto: Element.idphoto, src: 'http:/37.187.119.144:8080/compagnieServer/api/Image/' + Element.url, alt: Element.url } })
       }
     }
   },

@@ -172,7 +172,7 @@ export default {
     },
     dataImages: [{
       id: '1',
-      src: 'http://localhost:8080/api/Image/',
+      src: 'http://37.187.119.144:8080/compagnieServer/api/Image/',
       alt: 'Alt Image 1'
     }],
     items: ['foo', 'bar', 'fizz', 'buzz'],
@@ -198,7 +198,7 @@ export default {
     var membre = null
     var list = this.getPhotos()
     this.dataImages = list.map((Element) => {
-      return { idphoto: Element.idphoto, src: 'http://localhost:8080/api/Image/' + Element.url, alt: Element.url }
+      return { idphoto: Element.idphoto, src: 'http://37.187.119.144:8080/compagnieServer/api/Image/' + Element.url, alt: Element.url }
     })
     this.items = this.getRoles()
     if (this.$router.app._route.params.id !== undefined) {

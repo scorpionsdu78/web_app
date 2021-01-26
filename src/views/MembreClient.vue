@@ -85,7 +85,7 @@ export default {
       console.log(membre.photos.length)
       if (membre.photos.length > 0) {
         console.log('set image')
-        this.photos = membre.photos.map((Element) => { return { idphoto: Element.idphoto, src: 'http://localhost:8080/api/Image/' + Element.url, alt: Element.url } })
+        this.photos = membre.photos.map((Element) => { return { idphoto: Element.idphoto, src: 'http://37.187.119.144:8080/compagnieServer/api/Image/' + Element.url, alt: Element.url } })
       }
     }
     console.log(this.items)

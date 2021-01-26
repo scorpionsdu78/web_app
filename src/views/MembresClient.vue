@@ -19,10 +19,10 @@
                     <v-row>
                         <v-col></v-col>
                         <div v-if="membre.photos === undefined || membre.photos.length === 0">
-                            <v-col ><v-img src="http://localhost:8080/api/Image/avatar.png" max-height="150px" max-width="150px"></v-img></v-col>
+                            <v-col ><v-img src="http://37.187.119.144:8080/compagnieServer/api/Image/avatar.png" max-height="150px" max-width="150px"></v-img></v-col>
                         </div>
                         <div v-else>
-                            <v-col ><v-img :src="'http://localhost:8080/api/Image/'+membre.photos[0].url" max-height="150px" max-width="150px"></v-img></v-col>
+                            <v-col ><v-img :src="'http://37.187.119.144:8080/compagnieServer/api/Image/'+membre.photos[0].url" max-height="150px" max-width="150px"></v-img></v-col>
                         </div>
                         <v-col></v-col>
                     </v-row>

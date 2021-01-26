@@ -33,7 +33,7 @@ const getters = {
     console.log('entrez get')
     console.log(state.photos)
     var dataImages = state.photos.map((Element) => {
-      return { idphoto: Element.idphoto, src: 'http://localhost:8080/api/Image/' + Element.url, alt: Element.url }
+      return { idphoto: Element.idphoto, src: 'http://37.187.119.144:8080/compagnieServer/api/Image/' + Element.url, alt: Element.url }
     })
     return dataImages
   }
