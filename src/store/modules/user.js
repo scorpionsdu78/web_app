@@ -1,6 +1,6 @@
 import axios from 'axios'
 var passwordHash = require('password-hash')
-const url = '/api/User'
+const url = 'http://37.187.119.144:8080/compagnieServer/api/User'
 
 const state = {
   login: false
