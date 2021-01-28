@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = '/api/Article'
+const url = 'http://37.187.119.144:8080/compagnieServer/api/Article'
 
 const state = {
   articles: [{
